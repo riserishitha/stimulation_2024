@@ -1,0 +1,51 @@
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f4f8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    color: #333;
+    background-image: url('https://img.freepik.com/premium-photo/yellow-blue-abstract-creative-background-blue-abstract-background-geometric-background_481527-27945.jpg'); /* Replace with your image path */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+    
+  .grid {
+    border: 1px solid;
+    height: 120px;
+    width: 140px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; 
+    align-items: center;
+    margin: 20px 0;
+  }
+    
+  .grid div {
+    height: 20px;
+    width: 20px;
+  }
+    
+  .player-one {
+    background-color: red;
+    border-radius: 10px;
+  }
+    
+  .player-two {
+    background-color: blue;
+    border-radius: 10px;
+  }
+    
+  #result {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #e63946;
+    text-align: center;
+    margin-top: 20px;
+  }
+  
