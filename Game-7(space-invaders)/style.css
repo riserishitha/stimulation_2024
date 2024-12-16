@@ -1,0 +1,81 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #1e3c72, #2a5298); 
+    color: white;
+}
+
+.game-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+.header {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.grid {
+    width: 320px;
+    height: 320px;
+    border: 3px solid #fff; 
+    display: flex;
+    flex-wrap: wrap;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); 
+    background-color: rgba(255, 255, 255, 0.1); 
+    border-radius: 8px; 
+}
+
+.grid div {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.2s;
+}
+
+.grid div:hover {
+    transform: scale(1.2);
+}
+
+.invader {
+    background-color: purple;
+    border-radius: 50%; 
+    box-shadow: 0 0 10px purple; 
+}
+
+.shooter {
+    background-color: green;
+    border-radius: 3px;
+    box-shadow: 0 0 10px green; 
+}
+
+.laser {
+    background-color: orange;
+    border-radius: 2px;
+    box-shadow: 0 0 10px orange; 
+}
+
+.boom {
+    background-color: red;
+    animation: flash 0.5s infinite alternate; 
+}
+
+@keyframes flash {
+    0% { opacity: 1; }
+    100% { opacity: 0.5; }
+}
+
+.results {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.2); 
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
