@@ -3,8 +3,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const result = document.querySelector('#result');
     const displayCurrentPlayer = document.querySelector('#current-player');
     const playAgainButton = document.querySelector('#play-again');
+    const timerDisplay = document.querySelector('#timer'); 
     let currentPlayer = 1;
     let gameActive = true;
+    let timer;
+    const turnTime = 10; 
 
     const winningArrays = [
         [0, 1, 2, 3],
@@ -78,6 +81,21 @@ document.addEventListener('DOMContentLoaded', () => {
         [13, 20, 27, 34]
     ];
 
+    function startTimer() {
+        let timeLeft = turnTime;
+        timerDisplay.innerHTML = `Time Left: ${timeLeft}s`;
+        clearInterval(timer);
+        timer = setInterval(() => {
+            timeLeft -= 1;
+            timerDisplay.innerHTML = `Time Left: ${timeLeft}s`;
+            if (timeLeft === 0) {
+                clearInterval(timer);
+                gameActive = false;
+                result.innerHTML = 'Time\'s up!';
+            }
+        }, 1000);
+    }
+
     function checkBoard() {
         for (let y = 0; y < winningArrays.length; y++) {
             const [a, b, c, d] = winningArrays[y];
@@ -87,38 +105,49 @@ document.addEventListener('DOMContentLoaded', () => {
                 squares[c].classList.contains('player-one') &&
                 squares[d].classList.contains('player-one')
             ) {
-                alert('Player One Wins!');
+                result.innerHTML = 'Player One Wins!';
                 gameActive = false;
-                break;
+                clearInterval(timer); 
+                return;
             } else if (
                 squares[a].classList.contains('player-two') &&
                 squares[b].classList.contains('player-two') &&
                 squares[c].classList.contains('player-two') &&
                 squares[d].classList.contains('player-two')
             ) {
-                alert('Player Two Wins!');
+                result.innerHTML = 'Player Two Wins!';
                 gameActive = false;
-                break;
+                clearInterval(timer); 
+                return;
             }
         }
+    }
+
+    function aiMove() {
+        let move = Math.floor(Math.random() * 42);
+        while (squares[move].classList.contains('taken')) {
+            move = Math.floor(Math.random() * 42);
+        }
+        squares[move].classList.add('taken');
+        squares[move].classList.add('player-two');
+        currentPlayer = 1;
+        displayCurrentPlayer.innerHTML = currentPlayer;
+        startTimer();
+        checkBoard();
     }
 
     for (let i = 0; i < squares.length; i++) {
         squares[i].onclick = () => {
             if (gameActive) {
                 if (squares[i + 7].classList.contains('taken') && !squares[i].classList.contains('taken')) {
-                    if (currentPlayer === 1) {
-                        squares[i].classList.add('taken');
-                        squares[i].classList.add('player-one');
-                        currentPlayer = 2;
-                        displayCurrentPlayer.innerHTML = currentPlayer;
-                    } else if (currentPlayer === 2) {
-                        squares[i].classList.add('taken');
-                        squares[i].classList.add('player-two');
-                        currentPlayer = 1;
-                        displayCurrentPlayer.innerHTML = currentPlayer;
-                    }
+                    squares[i].classList.add('taken');
+                    squares[i].classList.add('player-one');
+                    currentPlayer = 2;
+                    displayCurrentPlayer.innerHTML = currentPlayer;
+                    clearInterval(timer);
+                    startTimer();
                     checkBoard();
+                    setTimeout(aiMove, 1000); 
                 } else {
                     alert('Cannot go here');
                 }
@@ -134,6 +163,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         currentPlayer = 1;
         displayCurrentPlayer.innerHTML = currentPlayer;
+        result.innerHTML = '';
         gameActive = true;
+        startTimer(); 
     };
+    startTimer();
 });
