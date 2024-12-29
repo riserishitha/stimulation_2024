@@ -108,7 +108,21 @@ body {
       transform: translateY(0px);
     }
   }
-  
+  #restart-button {
+    background-color: #003366;
+    color: white;
+    font-size: 1.2em;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+#restart-button:hover {
+    background-color: #0055a5;
+}
+
 
   
 

@@ -10,8 +10,17 @@ body {
     color: white;
 }
 
+.game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
 .grid {
     position: relative;
+    z-index: -1;
     width: 560px;
     height: 300px;
     border: solid 2px white;
@@ -41,11 +50,6 @@ body {
     transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 
-.block:active {
-    transform: scale(0.9);
-    opacity: 0.8;
-}
-
 .ball {
     position: absolute;
     width: 20px;
@@ -56,11 +60,51 @@ body {
 }
 
 #score {
-    position: absolute; 
-    top: 10px; 
+    top: 10px;
     text-align: center;
-    font-size: 50px; 
-    color: white; 
+    font-size: 50px;
+    color: white;
     font-weight: bold;
 }
 
+.controls {
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+button:disabled {
+    background-color: #ddd;
+    cursor: not-allowed;
+}
+
+#start {
+    background-color: #4CAF50;
+}
+
+#stop {
+    background-color: #f44336;
+}
+
+#start:hover {
+    background-color: #45a049;
+}
+
+#stop:hover {
+    background-color: #e53935;
+}

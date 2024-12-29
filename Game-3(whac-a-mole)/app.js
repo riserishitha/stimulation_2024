@@ -1,11 +1,22 @@
 const squares = document.querySelectorAll('.square');
 const timeLeft = document.querySelector('#time-left');
 const score = document.querySelector('#score');
+const restartButton = document.querySelector('#restart-button');
 
 let hitPosition;
 let result = 0;
 let currentTime = 60;
 let timerId = null;
+function restartGame() {
+    clearInterval(timerId); 
+    clearInterval(countDownTimerId); 
+    result = 0;
+    currentTime = 60; 
+    score.textContent = result; 
+    timeLeft.textContent = currentTime;
+    moveMole();
+    countDownTimerId = setInterval(countDown, 1000);
+}
 function randomSquare() {
     squares.forEach(sq => sq.classList.remove('mole')); 
 
@@ -37,5 +48,5 @@ function countDown() {
         alert('GAME OVER! Your final score is ' + result); 
     }
 }
-
+restartButton.addEventListener('click', restartGame);
 let countDownTimerId = setInterval(countDown, 1000);
